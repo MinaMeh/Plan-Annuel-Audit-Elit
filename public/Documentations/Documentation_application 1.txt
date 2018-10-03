@@ -1,0 +1,9 @@
+BDD:  CI:15.5    examen:16  TP:13.5     Moyenne: 15.10
+MCSI:   CI:4    Examen: 11.25  moyenne:9.38
+Sys:    CI:12.5    Examen:5.75 Moyenne: 11.83
+Res:    Examen: 12   projet:14.2  TP:15.7  Moyenne:13.25
+Archi:   CI:17.5   Examen:14.75
+Sec:    CI:6.5/10   examen: 10.5  Moyenne:11
+ANG:
+CPRJ:   moyenne:13.29
+Projet:  myenne: 14.5

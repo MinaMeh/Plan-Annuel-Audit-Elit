@@ -1,0 +1,138 @@
+
+  *,
+  *::after,
+  *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+  } 
+
+  body {
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    box-sizing: border-box;
+  }
+/*******************
+   HEADER ACCUEIL
+*******************/
+  .headerAcc {
+      height: 95vh;
+      background-image: linear-gradient(
+          to left bottom,          
+          #03948a,
+          #c3e9f0);
+      background-size: cover;
+      background-position: top;
+      clip-path: polygon(0 0, 100% 0, 100% 83%, 0 100%);    
+      position: relative;
+  }
+
+  .headerAcc__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    text-align: center;
+  }
+
+  .heading-primary {
+    color: #fff ;
+    text-transform: uppercase;
+    backface-visibility: hidden;    
+    margin-bottom: 60px;
+  }
+
+  .heading-primary--main{
+    display: block;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 18px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;  
+    animation-timing-function: ease-out; 
+  }
+
+  @keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+
+    80% {
+      transform: translateX(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
+  @keyframes moveInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+
+    80% {
+      transform: translateX(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
+  @keyframes moveInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+/*******************
+  BOUTONS ACCUEIL
+*******************/
+  .btnAcc{
+    text-transform: uppercase ;
+    text-decoration: none;
+    padding: 12px  30px;
+    margin-right: 100px;
+    margin-left: 100px;
+    display : inline-block;
+    border-radius: 50px;
+    transition: all .2s ;
+    position: relative;
+    
+    }
+
+  .btnAcc:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+  }
+
+  .btnAcc:active{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
+
+  .btnAcc--white {
+    background-color: #fff;
+    color: #777;
+  }
+
+  .btnAcc--animated {
+    animation: moveInBottom .5s ease-out .75s ;
+    animation-fill-mode: backwards; 
+  }
+
+
+
