@@ -22,7 +22,7 @@ class PlansController extends Controller
 		\DB::update('update plans SET actuel=false');
 		    $this->validate(request(),[
 			'nom'=>'required|regex:/^[a-zA-Z0-9\s]+$/|min:4|max:30',
-			'annee'=>'required|numeric',
+			'annee'=>"required|numeric|min:".(\Carbon\Carbon::now()->year-1)."|max:".(\Carbon\Carbon::now()->year+2),
 			'note'=>'mimes:pdf'
 			
 		],[
@@ -31,6 +31,9 @@ class PlansController extends Controller
 			'nom.min'=>'le nom du plan doit dépasser 4 caractères',
 			'nom.max'=>'le nom du plan ne doit pas dépasser 30 caractères',
 			'annee.required'=>'veuillez préciser l\'année du plan',
+			'annee.min'=>'l\'année du plan est invalide',
+                        'annee.max'=>'l\'année du plan est invalide',
+
 			'note.mimes'=>'le type du fichier n\'est pas valide'
 		]);
 		 if ($file=$request->file('note')){
@@ -72,15 +75,20 @@ class PlansController extends Controller
 		
 		 $this->validate(request(),[
 			'nom'=>'required|regex:/^[a-zA-Z0-9\s]+$/|min:4|max:30',
-			'annee'=>'required|numeric',
+                        'annee.required'=>'veuillez préciser l\'année du plan',
+                        'annee'=>"required|numeric|min:".(\Carbon\Carbon::now()->year-1)."|max:".(\Carbon\Carbon::now()->year+2),
+
 			'note'=>'mimes:pdf'
-			
+		
 		],[
 			'nom.required'=>'veuillez préciser le nom du plan',
 			'nom.regex'=>'le nom du plan n\'est pas valide',
 			'nom.min'=>'le nom du plan doit dépasser 4 caractères',
 			'nom.max'=>'le nom du plan ne doit pas dépasser 30 caractères',
 			'annee.required'=>'veuillez préciser l\'année du plan',
+			 'annee.min'=>'l\'année du plan est invalide',
+                        'annee.max'=>'l\'année du plan est invalide',
+
 			'note.mimes'=>'le type du fichier n\'est pas valide'
 		]);
 

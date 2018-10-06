@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::auth();
+Route::get('refresh_captcha', 'Auth\AuthController@refreshCaptcha')->name('refresh_captcha');
 
 
 /****Gestion des plans*****/

@@ -56,10 +56,18 @@ class ProjectsController extends Controller
     }
     public function store($id)
     {
+	$trimestres=array(1,2,3,4);
+	if (!in_array(request('trimestre'),$trimestres))
+	        return back()->withError('trimestre invalide');
+
+	$procedures=Procedure::pluck('id')->toArray();
+	if (!in_array(request('procedure'),$procedures))
+	return back()->withError('Procédure non valide');
+	
     	$this->validate(request(),[
     		'procedure'=>'required',
     		'trimestre'=>'required',
-    		'date_debut_audit'=>'required|date|after:today'
+    		'date_debut_audit'=>'required|date|after:yesterday'
 
     	],[
             
@@ -95,9 +103,18 @@ class ProjectsController extends Controller
     }
     public function modifierProjet(Request $request)
     {
+	
+	 $trimestres=array(1,2,3,4);
+        if (!in_array(request('trimestre'),$trimestres))
+                return back()->withError('trimestre invalide');
+
+        $procedures=Procedure::pluck('id')->toArray();
+        if (!in_array(request('procedure'),$procedures))
+        return back()->withError('Procédure non valide');
+
 
         $this->validate(request(),[
-            'date_debut_audit'=>'required',
+            'date_debut_audit'=>'required|after:yesterday',
             'date_fin_audit'=>'date|after:date_debut_audit',
             'date_visa_dssd'=>'date|after:date_fin_audit',
             'date_passage_prod'=>'date|after:date_visa_dssd',
@@ -112,6 +129,8 @@ class ProjectsController extends Controller
             'date_passage_prod.after'=>'la date de passage en production est invalide',
             'trimestre.required'=>'Veuillez préciser le trimestre',
             'etat.required'=>'Veuillez préciser l\'état du projet',
+	'date_debut_audit.after'=>'la date de début d\'audit est invalide',
+
             'procedure.required'=>'Veuillez préciserla procedure du projet'
         ]);
         $projet=Projet::find(request('id'));
@@ -313,7 +332,13 @@ class ProjectsController extends Controller
     function addProjetReaudits(Request $request)
     {
         if ($request->ajax()){
-            Reaudit::create([
+	 $this->validate(request(),[
+                'date_debut'=>'required|date',
+                'date_fin'=>'required|date|after:date_debut',
+                'numero'=>'required'
+
+        ]); 
+           Reaudit::create([
                 'numero'=>request('numero'),
                 'date_debut'=>request('date_debut'),
                 'date_fin'=>request('date_fin'),

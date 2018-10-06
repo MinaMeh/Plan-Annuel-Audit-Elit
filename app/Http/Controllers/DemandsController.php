@@ -43,13 +43,23 @@ class DemandsController extends Controller
 	public function createNPClient()
 	{
 		$types=Type::all();
-		$technologies=Technologie::all();
+-		$technologies=Technologie::all();
 		$departements=Departement::all();
 		return view('Client.demands.create_NP',compact('types','technologies','departements'));
 	}
 	public function store(Request $request)
 	{
 		$plan=Plan::where('actuel',true)->first();
+		 $nature_client=Departement::pluck('nature')->toArray();
+                if (!in_array(request('nature_client'),$nature_client))
+                return back()->withErrors('Nature du client non valide');
+                $departements=Departement::pluck('designation')->toArray();
+                if (!in_array(request('client'),$departements))
+                return back()->withErrors('Département non valide');
+		 $types=Type::pluck('id')->toArray();
+                if (!in_array(request('type_app_np'),$types))
+                return back()->withErrors('Type de l\'application non valide');
+
 		$this->validate(request(),[
 			'nature_client'=>'bail|required|regex:/^[a-zA-Z0-9\séàèôûêç’\']+$/',
 			'client'=>'bail|required|regex:/^[a-zA-Z0-9\séàèôûêç’\']+$/|max:40',
@@ -155,6 +165,17 @@ class DemandsController extends Controller
 	public function storeNPStep1(Request $request)
 	{
 		$plan=Plan::where('actuel',true)->first();
+		 $nature_client=Departement::pluck('nature')->toArray();
+                if (!in_array(request('nature_client_np'),$nature_client))
+                return back()->withErrors('Nature du client non valide');
+                $departements=Departement::pluck('designation')->toArray();
+                if (!in_array(request('client_np'),$departements))
+                return back()->withErrors('Département non valide');
+		 $types=Type::pluck('id')->toArray();
+                if (!in_array(request('type_app_np'),$types))
+                return back()->withErrors('Type de l\'application non valide');
+
+
 		if (request('nature_client_np')=='Interne') {
 			$client=request('client_np');
 		}
@@ -345,7 +366,7 @@ class DemandsController extends Controller
 	}
 	public function updateDemande($id, Request $request)
 	{
-		dd($request->file('documentation'));
+		
 		$demande=Projet::find($id);
 		$this->validate(request(),[
 			'chef_projet'=>'bail|required|regex:/^[a-zA-Z0-9\séàèôûêç’\']+$/',
@@ -433,6 +454,13 @@ class DemandsController extends Controller
 			return view('errors.vide');
 
 	}
+
+	function getDocumentation($id)
+        {
+                $app=Application::find($id);
+                $path=storage_path('documents') . ("/documentations/").$app->documentation;
+                return response()->file($path);
+        }
 
 	
 }

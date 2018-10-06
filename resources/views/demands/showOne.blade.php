@@ -73,7 +73,9 @@
             </tr>
             <tr> 
               <th class="text-center font-weight-bold"> Documentation de l'application</th>
+		@if ($demande->application->documentation)
               <td class="text-center"><a href="/demandes/documentations/{{$demande->application->id}}">Documentation</a></td>
+		@endif
             </tr>
           </table> 
         </div>

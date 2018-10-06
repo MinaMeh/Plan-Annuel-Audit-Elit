@@ -35,7 +35,7 @@
 	                </div>
 	                <div class="form-group">
 	                    <label class="font-weight-bold"> Documentation</label> <br>
-	                    <input type="file" name="img[]" accept=".pdf, .doc, .docx, .ppt, .pptx" id="FileUpload1" class="file-upload-default">
+	                    <input type="file" name="documentation" accept=".pdf, .doc, .docx, .ppt, .pptx" id="FileUpload1" class="file-upload-default">
 	                    <div class="input-group col-xs-12 custom">
 	                      <input type="text" class="form-control" disabled placeholder="Documentation" name="documentation" id="documentation"  required>
 	                      <span class="input-group-append" id="spnFilePath" >

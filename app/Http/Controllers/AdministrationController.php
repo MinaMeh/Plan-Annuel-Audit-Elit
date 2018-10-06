@@ -182,6 +182,9 @@ class AdministrationController extends Controller
 	}
 	public function addUser()
 	{
+		$roles=Role::pluck('id')->toArray();
+		if (!in_array(request('role'),$roles))
+		return back()->withErrors('role invalide');
 		$this->validate(request(),[
 			'name'=>'required|regex:/^[a-zA-Z0-9\séàèôûêç._’\']+$/|min:2|max:30',
 			'email'=>'required|email',
@@ -333,6 +336,10 @@ class AdministrationController extends Controller
 	}
 	public function modifierUser(Request $request)
 	{
+		 $roles=Role::pluck('id')->toArray();
+                if (!in_array(request('role'),$roles))
+                return back()->withErrors('role invalide');
+
 		$user=User::find(request('id'));
 		$this->validate(request(),[
 			'name'=>'required|regex:/^[a-zA-Z0-9\séàèôûêç._’\']+$/|min:2|max:30',

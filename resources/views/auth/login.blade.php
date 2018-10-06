@@ -23,7 +23,7 @@
 					<i class="mdi mdi-close-circle-outline"> </i>
 				</a>
 	        </div>
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
                    <h2> PENTESTER LOGIN </h2>
                    @if ($errors->has('name'))
@@ -46,19 +46,47 @@
 					<input type ="password"  name="password" value="" required> 
 					<label><i class="mdi mdi-lock"></i> Mot de passe </label>			
 				</div>
+				 <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                      <div class="col-lg-12">
+                          <div class="captcha">
+                          <span>{!! captcha_img() !!}</span>
+                          <button type="button" style="background-color: #03948ad8; color: white;" class="btn  btn-refresh"><i class="mdi mdi-refresh"></i></button>
+                       
+                          <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                             </div>
+
+                          @if ($errors->has('captcha'))
+                              <div class="alert alert-danger">
+                                  <strong>{{ $errors->first('captcha') }}</strong>
+                              </div>
+                          @endif
+                      </div>
+                  </div>
 				 
 				<input class="btn" type ="submit" name="" value="Login"> 
-				<div class="container">
-				  <label>
-	                <input type="checkbox" checked="checked" name="remember"> Remember me
-				  </label>
+
 				   <a class="forgotPwd" href="{{ url('/password/reset') }}">Mot de passe oublié ?</a>			   
-	            </div>
-                        </div>
 
                     </form>
                 </div>
 	</div>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/ajax.js"></script>
 
+<script type="text/javascript">
+
+
+$(".btn-refresh").click(function(){
+  $.ajax({
+     type:'GET',
+     url:'/refresh_captcha',
+     success:function(data){
+        $(".captcha span").html(data.captcha);
+     }
+  });
+});
+
+
+</script>
 </body>
 </html>

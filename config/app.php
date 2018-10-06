@@ -161,7 +161,7 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
 
              Barryvdh\DomPDF\ServiceProvider::class,
-
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -211,6 +211,8 @@ return [
 
         'Charts' => ConsoleTVs\Charts\Charts::class,
          'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
+
 
     ],
 

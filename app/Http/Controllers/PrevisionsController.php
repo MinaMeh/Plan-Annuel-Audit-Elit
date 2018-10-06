@@ -52,6 +52,12 @@ class PrevisionsController extends Controller
 	}
 	public function store()
 	{
+		$nature_client=array('Interne','Externe');
+		if (!in_array(request('nature_client'),$nature_client))
+			return back()->withErrors('Nature du client non valide');
+		$departements=Departement::pluck('designation')->toArray();
+		if (!in_array(request('client'),$departements))
+			return back()->withErrors('Département non valide');
 		if (request('nature_client')=='Interne')
 			$client=request('clientt');
 		else
@@ -161,6 +167,13 @@ class PrevisionsController extends Controller
 	}
 	public function updatePrevision($id)
 	{
+		 $nature_client=array('Interne','Externe');
+                if (!in_array(request('nature_client'),$nature_client))
+                return back()->withErrors('Nature du client non valide');
+                $departements=Departement::pluck('id')->toArray();
+                if (!in_array(request('client'),$departements))
+                return back()->withErrors('Département non valide');
+
 		$application=Application::find($id);
 		$this->validate(request(),[
 			'app_name'=>'required|regex:/^[a-zA-Z0-9\séàèôûêç’\']+$/|min:2|max:40',

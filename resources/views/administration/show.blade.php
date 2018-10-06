@@ -78,8 +78,11 @@
 			              <tr>
 			                <td class="text-center">{{$procedure->code}}</td>
 			                <td class="text-center">{{$procedure->designation}}</td>
-			   				 <td class="text-center"><a href="/procedures/fiches/{{$procedure->id}}">Fiche technique</a></td>
-
+			   		@if ($procedure->file)
+					 <td class="text-center"><a href="/procedures/fiches/{{$procedure->id}}">Fiche technique</a></td>
+					@else
+					<td> </td>
+					@endif
 			                <td class="text-center">
 			                  <a class="btn btn-inverse-danger" data-toggle="modal" data-target="#deleteProcedure" data-id="{{$procedure->id}}" href="#"><span class="mdi mdi-delete"></span></a>
 			                  <a class="btn btn-inverse-primary "data-toggle="modal" data-target="#editProcedure" data-id="{{$procedure->id}}" data-designation="{{$procedure->designation}}" data-code="{{$procedure->code}}" href=""><span class="mdi mdi-pencil"></span></a>

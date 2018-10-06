@@ -201,13 +201,13 @@ class StatsController extends Controller
       $PA_encours=$table_PA->where('etat','=','en audit')->where('etat','=','en réaudit')->orWhere('etat','=','audit cloturé')->orWhere('etat','=','attendre la bonne version')->count();
       $table_PA=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',$plan)->where('prevision','PA');
 
-      $PA_nonFait=$table_PA->where('etat','=','reçu')->orWhereNull('projets.id')->count();
-      $table_NP=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',1)->where('prevision','NP');
+      $PA_nonFait=$table_PA->count()-$PA_encours-$PA_fait;
+      $table_NP=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',$plan)->where('prevision','NP');
       $NP_fait=$table_NP->where('etat','=','colturé')->count();
-      $table_NP=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',1)->where('prevision','NP');
+      $table_NP=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',$plan)->where('prevision','NP');
 
       $NP_encours=$table_NP->where('etat','=','en audit')->where('etat','=','en réaudit')->orWhere('etat','=','audit cloturé')->orWhere('etat','=','attendre la bonne version')->count();
-       $table_NP=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',1)->where('prevision','NP');
+       $table_NP=\DB::table('projets')->rightJoin('applications','applications.id','=','projets.application_id')->where('projets.plan_id','=',$plan)->where('prevision','NP');
   
       $NP_nonFait=$table_NP->count()-$NP_fait-$NP_encours;
 
