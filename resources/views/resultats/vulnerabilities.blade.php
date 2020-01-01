@@ -14,16 +14,16 @@
         <div class="table-responsive">
           <table class="table table-reponsive table-bordered">
             <thead>
-      				<th class="text-center"> Application</th>
+      				<th class="text-center font-weight-bold"> Application</th>
       				@foreach ($vulnerabilites as $vulnerabilite)
-      				   <th class="text-center" id="{{$vulnerabilite->id}}"> {{$vulnerabilite->designation}}</th>
+      				   <th class="text-center font-weight-bold" id="{{$vulnerabilite->id}}"> {{$vulnerabilite->designation}}</th>
       				@endforeach
       		  </thead>
 			      <tbody>
 				      @foreach ($projets as $projet)
                 @if ($projet->etat=="cloturé")
                   <tr>
-                      <td ><a href="/projets/{{$projet->id}}">{{$projet->application->nom}}</a></td>
+                      <td  class="text-center "><a href="/projets/{{$projet->id}}">{{$projet->application->nom}}</a></td>
                       @foreach ($projet->vulnerabilites as $vulnerabilite)
                       <td class="vulnerabilite text-center"  data-vulnerabilite="{{$vulnerabilite->id}}" data-projet="{{$projet->id}}"> {{$vulnerabilite->pivot->nbr}}</td> 
                       @endforeach             

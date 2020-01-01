@@ -89,7 +89,6 @@ class PrevisionsController extends Controller
 			'nature_client'=>request('nature_client'),
 			'client'=>$client,
 			'date_prevu_prod'=>request('date_prevu_prod'),
-			
 			'plan_id'=>$plan['id']
 		]);
 		if(request('autre_tech')!=''){
@@ -170,7 +169,7 @@ class PrevisionsController extends Controller
 		 $nature_client=array('Interne','Externe');
                 if (!in_array(request('nature_client'),$nature_client))
                 return back()->withErrors('Nature du client non valide');
-                $departements=Departement::pluck('id')->toArray();
+                $departements=Departement::pluck('designation')->toArray();
                 if (!in_array(request('client'),$departements))
                 return back()->withErrors('Département non valide');
 

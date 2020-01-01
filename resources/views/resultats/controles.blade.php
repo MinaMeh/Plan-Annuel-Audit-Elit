@@ -15,15 +15,15 @@
         <div class="table-responsive">
           <table class="table table-reponsive table-bordered">
             <thead>
-      				<th class="text-center"> Application</th>
+      				<th class="text-center font-weight-bold"> Application</th>
       				@foreach ($controles as $controle)
-      				   <th class="text-center" id="{{$controle->id}}"> {{$controle->designation}}</th>
+      				   <th class="text-center font-weight-bold" id="{{$controle->id}}"> {{$controle->designation}}</th>
       				@endforeach
       		  </thead>
 			      <tbody>
 				      @foreach ($projets as $projet)
         				<tr>
-        					<td class="text-center" ><a href="/projets/{{$projet->id}}">{{$projet->application->nom}}</a></td>
+        					<td class="text-center " ><a href="/projets/{{$projet->id}}">{{$projet->application->nom}}</a></td>
         					@foreach ($projet->controles as $controle)
                     @if($projet->etat=="cloturé")
                      <td class="controle text-center"  data-controle="{{$controle->id}}" data-projet="{{$projet->id}}"> {{$controle->pivot->nbr}}</td> 

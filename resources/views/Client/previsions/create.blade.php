@@ -60,14 +60,14 @@
                 @endforeach 
               </div> 
                <div class="form-check form-check-flat">
-                  <div class="form-check"> 
-                    <label class="form-check-label">
-                      <input type="checkbox" name="autre"  id="autre" >Autres
-                    </label>
-                  </div>
-                   <input class="form-control collapse " type="text" name="autre_tech" id="autre_tech" value="">
-              </div> 
-            </div>
+              <div class="form-check"> 
+                <label class="form-check-label">
+                  <input type="checkbox" name="autre"  id="autre" >Autres
+                </label>
+              </div>
+              <input class="form-control collapse " type="text" name="autre_tech" id="autre_tech" value="">
+            </div> 
+          </div>
             <div class="col-md-2 offset-md-9" >
             <button name="submit" type="submit" class="btn btn-dark mr-2" id="ajoutPrevision"><i class="mdi mdi-send"></i>Envoyer</button>
             </div>

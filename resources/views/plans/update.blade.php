@@ -24,7 +24,7 @@
         </div>
         </div>
         <div class="line"></div>
-      <form class="forms-sample" method="post" action="/plans/modifier/{{$plan->id}}"  enctype="multipart/form-data">
+      <form class="forms-sample" method="post" action="/plans/modifier/{{$plan->id}}" enctype="multipart/form-data">
         {{csrf_field()}}
         @include('errors.errors')
         <div class="form-group ">

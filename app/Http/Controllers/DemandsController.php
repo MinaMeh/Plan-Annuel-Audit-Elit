@@ -20,8 +20,7 @@ class DemandsController extends Controller
 	{
 		        $this->middleware('auth')->only('showDemande','updateDemande','index','create','createNPdemand','supprimerDemande','editDemande','validateDemande','valideDemands','invalideDemands,getDocumentation');
 
-	}
-	public function create()
+ 	public function create()
 	{
 		$types= Type::all();
 		$clients=Application::all()->pluck('client')->unique();
@@ -43,7 +42,7 @@ class DemandsController extends Controller
 	public function createNPClient()
 	{
 		$types=Type::all();
--		$technologies=Technologie::all();
+		$technologies=Technologie::all();
 		$departements=Departement::all();
 		return view('Client.demands.create_NP',compact('types','technologies','departements'));
 	}
@@ -57,7 +56,7 @@ class DemandsController extends Controller
                 if (!in_array(request('client'),$departements))
                 return back()->withErrors('Département non valide');
 		 $types=Type::pluck('id')->toArray();
-                if (!in_array(request('type_app_np'),$types))
+                if (!in_array(request('type_app'),$types))
                 return back()->withErrors('Type de l\'application non valide');
 
 		$this->validate(request(),[

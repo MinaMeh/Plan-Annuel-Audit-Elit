@@ -14,8 +14,7 @@
     <link rel="shortcut icon" href="/img/logo.png" />
     <link rel="stylesheet" type="text/css" href="/css/style1.css">
      <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-      <script type="text/javascript"  src="/bootstrap/js/bootstrap.min.js" ></script>
-    
+      <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js" ></script>
 
 </head>
 <body>
@@ -86,9 +85,9 @@
   <script type="text/javascript" src="/js/functions.js"></script>
 
   <script type="text/javascript" src="/js/script.js"></script>
-  <script src="/js/off-canvas.js"></script>
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
   <script src="/js/misc.js"></script>
-  <script src="/js/dashboard.js"></script>
   <script src="/js/scriptAdded.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
